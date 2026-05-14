@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INCLAVATUS</title>
+  <meta name="description" content="INCLAVATUS — un roman de suspense et de mystère signé Inclavatus. New York. Un journal maudit. Une flamme qui respire." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- CURSEUR PERSONNALISÉ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursor-trail"></div>
+
+  <!-- BRUIT DE FOND -->
+  <canvas id="noise-canvas"></canvas>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <div class="nav-sigil">✦</div>
+    <ul class="nav-links">
+      <li><a href="#hero" data-section="accueil">Accueil</a></li>
+      <li><a href="#extrait" data-section="extrait">Extrait</a></li>
+      <li><a href="#auteur" data-section="auteur">L'auteur</a></li>
+      <li><a href="#contact" data-section="contact">Contact</a></li>
+    </ul>
+    <div class="nav-sigil">✦</div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION HERO                                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+
+    <div class="hero-ornament top-left">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 10 L60 110 M10 60 L110 60" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+        <path d="M60 10 L110 60 L60 110 L10 60 Z" stroke="currentColor" stroke-width="0.7" fill="none"/>
+        <circle cx="60" cy="60" r="20" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <circle cx="60" cy="60" r="35" stroke="currentColor" stroke-width="0.3" fill="none"/>
+        <path d="M60 25 L72 55 L60 95 L48 55 Z" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <div class="hero-ornament top-right">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 10 L60 110 M10 60 L110 60" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+        <path d="M60 10 L110 60 L60 110 L10 60 Z" stroke="currentColor" stroke-width="0.7" fill="none"/>
+        <circle cx="60" cy="60" r="20" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <circle cx="60" cy="60" r="35" stroke="currentColor" stroke-width="0.3" fill="none"/>
+        <path d="M60 25 L72 55 L60 95 L48 55 Z" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal-up">— un roman —</div>
+
+      <h1 class="hero-title reveal-up" style="animation-delay:.15s">
+        <span class="title-letter" style="animation-delay:.1s">I</span>
+        <span class="title-letter" style="animation-delay:.18s">N</span>
+        <span class="title-letter" style="animation-delay:.26s">C</span>
+        <span class="title-letter" style="animation-delay:.34s">L</span>
+        <span class="title-letter" style="animation-delay:.42s">A</span>
+        <span class="title-letter" style="animation-delay:.50s">V</span>
+        <span class="title-letter" style="animation-delay:.58s">A</span>
+        <span class="title-letter" style="animation-delay:.66s">T</span>
+        <span class="title-letter" style="animation-delay:.74s">U</span>
+        <span class="title-letter" style="animation-delay:.82s">S</span>
+      </h1>
+
+      <div class="hero-divider reveal-up" style="animation-delay:.5s">
+        <span class="divider-line"></span>
+        <span class="divider-sigil">⬡</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <p class="hero-tagline reveal-up" style="animation-delay:.65s">
+        New York. Un journal maudit.<br/>Une flamme qui respire.
+      </p>
+
+      <!-- EMPLACEMENT COUVERTURE -->
+      <div class="cover-placeholder reveal-up" style="animation-delay:.8s" id="cover-slot">
+        <div class="cover-inner">
+          <div class="cover-frame">
+            <svg class="cover-tarot-border" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cadre extérieur -->
+              <rect x="4" y="4" width="192" height="292" rx="4" stroke="currentColor" stroke-width="0.8" fill="none"/>
+              <rect x="10" y="10" width="180" height="280" rx="3" stroke="currentColor" stroke-width="0.4" fill="none"/>
+              <!-- Coins ornementaux -->
+              <path d="M4 4 L30 4 M4 4 L4 30" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M196 4 L170 4 M196 4 L196 30" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M4 296 L30 296 M4 296 L4 270" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M196 296 L170 296 M196 296 L196 270" stroke="currentColor" stroke-width="1.5"/>
+              <!-- Motif central -->
+              <circle cx="100" cy="150" r="40" stroke="currentColor" stroke-width="0.5" fill="none"/>
+              <path d="M100 110 L126 142 L116 178 L84 178 L74 142 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+              <path d="M100 118 L100 182 M82 134 L118 166 M118 134 L82 166" stroke="currentColor" stroke-width="0.3" opacity="0.5"/>
+              <text x="100" y="240" text-anchor="middle" font-family="Cinzel" font-size="11" fill="currentColor" opacity="0.6" letter-spacing="4">INCLAVATUS</text>
+              <text x="100" y="258" text-anchor="middle" font-family="Cinzel" font-size="6" fill="currentColor" opacity="0.4" letter-spacing="3">CHAPITRE I</text>
+            </svg>
+            <p class="cover-hint">← Remplacez par votre couverture →</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="#extrait" class="hero-cta reveal-up" style="animation-delay:.95s">
+        <span>Lire l'extrait</span>
+        <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 2 L8 14 M3 9 L8 14 L13 9" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-ornament bottom-left">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="50" stroke="currentColor" stroke-width="0.4" fill="none" stroke-dasharray="2 4"/>
+        <path d="M60 10 L110 60 L60 110 L10 60 Z" stroke="currentColor" stroke-width="0.6" fill="none"/>
+        <path d="M35 35 L85 35 L85 85 L35 85 Z" stroke="currentColor" stroke-width="0.4" fill="none" transform="rotate(45 60 60)"/>
+      </svg>
+    </div>
+
+    <div class="hero-ornament bottom-right">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="50" stroke="currentColor" stroke-width="0.4" fill="none" stroke-dasharray="2 4"/>
+        <path d="M60 10 L110 60 L60 110 L10 60 Z" stroke="currentColor" stroke-width="0.6" fill="none"/>
+        <path d="M35 35 L85 35 L85 85 L35 85 Z" stroke="currentColor" stroke-width="0.4" fill="none" transform="rotate(45 60 60)"/>
+      </svg>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION EXTRAIT                             -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section-extrait" id="extrait">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">✦ Extrait ✦</div>
+        <h2 class="section-title">Chapitre I</h2>
+        <p class="section-subtitle">Quand la chance sent le brûlé</p>
+      </div>
+
+      <div class="extrait-card">
+        <div class="extrait-ornament-left">
+          <svg viewBox="0 0 20 200" xmlns="http://www.w3.org/2000/svg">
+            <line x1="10" y1="0" x2="10" y2="200" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="10" cy="30" r="3" stroke="currentColor" stroke-width="0.8" fill="none"/>
+            <circle cx="10" cy="100" r="5" stroke="currentColor" stroke-width="0.8" fill="none"/>
+            <circle cx="10" cy="170" r="3" stroke="currentColor" stroke-width="0.8" fill="none"/>
+          </svg>
+        </div>
+
+        <div class="extrait-body" id="extrait-body">
+          <p class="extrait-drop-cap">Le New York Rush News n'était pas un journal respectable.</p>
+          <p>Mais il avait une réputation. Une mauvaise, collante, qui lui valait plus de regards de travers que de lecteurs fidèles. Comme si le journal ne rapportait pas les catastrophes — il les devançait. Certains plaisantaient en disant que le Rush News ne couvrait pas les désastres mais qu'il les appelait.</p>
+          <p>Et, derrière cette prouesse grotesque, il y avait Donald Davis, un homme massif dont la voix occupait toujours trop d'espace et dont la peau virait au rouge plus vite qu'une sirène de police.</p>
+          <p class="extrait-italique">Il était payé une misère. Son appartement ne dépassait pas dix mètres carrés : un matelas, un lavabo, une fenêtre donnant sur un mur en brique. Une cellule, à peine habitable, où il survivait plus qu'il ne vivait, mais il s'en contentait.</p>
+          <p>Il n'avait pas appris à exiger davantage.</p>
+          <div class="extrait-separator">— ✦ —</div>
+          <p>Ce matin-là ne faisait pas exception. Le métro était bondé, saturé de chaleur humaine et d'odeurs trop familières. Quelques jours plus tôt, il avait reçu une lettre, arrivée comme un coup de vent dans une enveloppe blanche un peu écornée. <em>Nous sommes au regret de vous informer…</em> Des mots secs, polis en apparence, mais capables de transformer l'avenir en un grand vide.</p>
+          <p>Columbia ne voulait pas de lui.</p>
+          <p>New York brillait toujours, monstre magnifique aux mille lumières. Mais jamais pour lui.</p>
+          <div class="extrait-separator">— ✦ —</div>
+          <p>Alors qu'il le déverrouillait, il jura voir une lueur orange danser un instant entre ses doigts. Pas un reflet, pas une illusion. Une sorte de flamme qui pulsa, puis s'éteignit.</p>
+          <p class="extrait-final">Et, pendant une fraction de seconde, il eut la terrifiante certitude qu'elle <em>respirait.</em></p>
+        </div>
+
+        <div class="extrait-ornament-right">
+          <svg viewBox="0 0 20 200" xmlns="http://www.w3.org/2000/svg">
+            <line x1="10" y1="0" x2="10" y2="200" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="10" cy="30" r="3" stroke="currentColor" stroke-width="0.8" fill="none"/>
+            <circle cx="10" cy="100" r="5" stroke="currentColor" stroke-width="0.8" fill="none"/>
+            <circle cx="10" cy="170" r="3" stroke="currentColor" stroke-width="0.8" fill="none"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="extrait-note">
+        <p>— Extrait du Chapitre I —</p>
+        <p class="note-hint">Cet extrait peut être modifié dans <code>index.html</code> → section <code>#extrait-body</code></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION AUTEUR                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section-auteur" id="auteur">
+    <div class="section-inner">
+      <div class="auteur-grid">
+
+        <div class="auteur-visual">
+          <div class="auteur-frame">
+            <div class="auteur-photo-slot">
+              <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" class="auteur-placeholder-svg">
+                <rect x="2" y="2" width="156" height="196" rx="3" stroke="currentColor" stroke-width="0.6" fill="none"/>
+                <path d="M2 2 L20 2 M2 2 L2 20" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M158 2 L140 2 M158 2 L158 20" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M2 198 L20 198 M2 198 L2 180" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M158 198 L140 198 M158 198 L158 180" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="80" cy="85" r="30" stroke="currentColor" stroke-width="0.5" fill="none"/>
+                <circle cx="80" cy="85" r="18" stroke="currentColor" stroke-width="0.5" fill="none"/>
+                <path d="M80 55 L80 115 M50 85 L110 85" stroke="currentColor" stroke-width="0.3" opacity="0.4"/>
+                <text x="80" y="155" text-anchor="middle" font-family="Cinzel" font-size="8" fill="currentColor" opacity="0.5" letter-spacing="2">AUTEUR</text>
+              </svg>
+            </div>
+            <div class="auteur-name-badge">INCLAVATUS</div>
+          </div>
+        </div>
+
+        <div class="auteur-text">
+          <div class="section-tag">✦ L'auteur ✦</div>
+          <h2 class="auteur-title">Inclavatus</h2>
+
+          <p class="auteur-bio">Inclavatus est un auteur qui écrit dans l'ombre et publie à la lumière. À travers <em>Inclavatus</em>, son premier roman, il plonge le lecteur dans les ruelles de New York, là où la presse de caniveau côtoie les forces qui ne devraient pas exister.</p>
+
+          <p class="auteur-bio">Son écriture oscille entre le réalisme urbain et le fantastique discret — ce moment précis où la réalité se fissure, imperceptiblement, et laisse passer quelque chose.</p>
+
+          <div class="auteur-divider">
+            <span></span><span class="adiv-sigil">◈</span><span></span>
+          </div>
+
+          <p class="auteur-quote">"New York brillait toujours, monstre magnifique aux mille lumières. Mais jamais pour lui."</p>
+
+          <div class="auteur-links">
+            <a href="https://inclavatus.tumblr.com/" target="_blank" rel="noopener" class="auteur-link">
+              <svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 2h4v2H8v6h2l-4 4-4-4h2V2z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+              Tumblr
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION CONTACT                             -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section-contact" id="contact">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">✦ Contact ✦</div>
+        <h2 class="section-title">Invoquer l'auteur</h2>
+        <p class="section-subtitle">Pour toute question, collaboration, ou simple curiosité.</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-sigil">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="0.6" fill="none"/>
+            <path d="M40 4 L40 76 M4 40 L76 40" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
+            <path d="M40 4 L76 40 L40 76 L4 40 Z" stroke="currentColor" stroke-width="0.8" fill="none"/>
+            <circle cx="40" cy="40" r="12" stroke="currentColor" stroke-width="0.6" fill="none"/>
+            <circle cx="40" cy="40" r="4" fill="currentColor" opacity="0.5"/>
+          </svg>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="name">Votre nom</label>
+            <input type="text" id="name" name="name" placeholder="Charlie Saunders..." autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label for="email">Votre email</label>
+            <input type="email" id="email" name="email" placeholder="vous@example.com" autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Écrivez ici..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <span>Envoyer</span>
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L14 8 M9 3 L14 8 L9 13" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
+          </button>
+          <p class="form-note">Ce formulaire est un modèle — connectez-le à Formspree, EmailJS ou votre backend.</p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FOOTER                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-sigil">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 5 L55 30 L30 55 L5 30 Z" stroke="currentColor" stroke-width="0.8" fill="none"/>
+          <circle cx="30" cy="30" r="12" stroke="currentColor" stroke-width="0.5" fill="none"/>
+          <circle cx="30" cy="30" r="3" fill="currentColor" opacity="0.4"/>
+        </svg>
+      </div>
+      <p class="footer-title">INCLAVATUS</p>
+      <p class="footer-copy">© 2025 Inclavatus — Tous droits réservés</p>
+      <div class="footer-links">
+        <a href="https://inclavatus.tumblr.com/" target="_blank" rel="noopener">Tumblr</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
