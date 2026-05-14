@@ -1,310 +1,339 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INCLAVATUS</title>
-  <meta name="description" content="INCLAVATUS — un roman de suspense et de mystère signé Inclavatus. New York. Un journal maudit. Une flamme qui respire." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>INCLAVATUS</title>
+<meta name="description" content="INCLAVATUS — un roman de suspense et de mystère. New York. Un journal maudit. Une flamme qui respire."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --noir:#0a0804;--noir-s:#111009;--noir-c:#16130e;--noir-b:#2a2318;
+  --orange:#e8610a;--orange-g:#f07020;--orange-d:#7a3206;
+  --gold:#c9a84c;--gold-l:#e6c97a;--gold-d:#6b5520;
+  --iv:#f0e8d5;--iv-d:#a09070;
+  --fd:'Cinzel',serif;--fb:'Cormorant Garamond',serif;--fa:'IM Fell English',serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--noir);color:var(--iv);font-family:var(--fb);font-size:18px;line-height:1.8;overflow-x:hidden;cursor:none}
+#cur{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,background .2s;mix-blend-mode:screen}
+#curt{position:fixed;width:28px;height:28px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .15s ease,top .15s ease,opacity .3s;opacity:.4}
+#noise{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:1;opacity:.03}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:linear-gradient(to bottom,rgba(10,8,4,.96) 60%,transparent);transition:padding .3s}
+nav.sc{padding:.8rem 3rem}
+.ns{color:var(--gold);font-size:.9rem;opacity:.6;letter-spacing:2px}
+.nl{display:flex;gap:2.5rem;list-style:none}
+.nl a{font-family:var(--fd);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--iv-d);text-decoration:none;position:relative;transition:color .25s}
+.nl a::after{content:'';position:absolute;bottom:-3px;left:50%;right:50%;height:1px;background:var(--gold);transition:left .25s,right .25s}
+.nl a:hover{color:var(--gold-l)}.nl a:hover::after{left:0;right:0}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% 80%,#2a1206 0%,var(--noir) 65%);z-index:2}
+.hero::before{content:'';position:absolute;bottom:-10%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(ellipse 40% 60% at 50% 80%,rgba(232,97,10,.18) 0%,transparent 70%);pointer-events:none;animation:fl 4s ease-in-out infinite alternate}
+@keyframes fl{from{opacity:.5;transform:translateX(-50%) scaleY(1)}to{opacity:1;transform:translateX(-50%) scaleY(1.05)}}
+.hc{position:relative;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5rem;padding:7rem 2rem 4rem;max-width:700px}
+.hey{font-family:var(--fa);font-style:italic;color:var(--gold);letter-spacing:.3em;font-size:.9rem;opacity:0;animation:ru .7s .1s forwards}
+.ht{font-family:var(--fd);font-weight:900;font-size:clamp(4rem,14vw,9rem);letter-spacing:.15em;color:transparent;-webkit-text-stroke:1px var(--gold);line-height:1;display:flex;gap:.02em}
+.tl{display:inline-block;opacity:0;transform:translateY(20px);animation:lr .6s forwards}
+@keyframes lr{to{opacity:1;transform:none}}
+.hdv{display:flex;align-items:center;gap:1rem;width:200px;opacity:0;animation:ru .7s .5s forwards}
+.dl{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-d),transparent)}
+.ds{color:var(--gold);font-size:.7rem;opacity:.7}
+.htag{font-family:var(--fa);font-style:italic;font-size:1.15rem;color:var(--iv-d);line-height:1.9;opacity:0;animation:ru .7s .65s forwards}
+@keyframes ru{to{opacity:1;transform:translateY(0)}}
+.cw{width:200px;margin:.5rem auto;opacity:0;animation:ru .7s .8s forwards}
+.csvg{width:200px;height:300px;color:var(--gold-d);opacity:.7;transition:opacity .3s,color .3s;display:block}
+.cw:hover .csvg{opacity:1;color:var(--gold)}
+.ch{font-family:var(--fd);font-size:.52rem;letter-spacing:.1em;color:var(--gold-d);margin-top:.4rem;opacity:.45;text-align:center}
+.hcta{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--fd);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--iv);text-decoration:none;border:1px solid var(--gold-d);padding:.75rem 2rem;position:relative;overflow:hidden;transition:color .3s,border-color .3s;margin-top:.5rem;opacity:0;animation:ru .7s .95s forwards}
+.hcta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--orange-d),transparent);opacity:0;transition:opacity .3s}
+.hcta:hover{color:var(--gold-l);border-color:var(--gold)}.hcta:hover::before{opacity:1}
+.hcta svg{transition:transform .3s}.hcta:hover svg{transform:translateY(3px)}
+.orn{position:absolute;width:120px;height:120px;color:var(--gold-d);opacity:.22;pointer-events:none;transition:opacity .6s}
+.otl{top:80px;left:40px}.otr{top:80px;right:40px;transform:scaleX(-1)}
+.obl{bottom:40px;left:40px}.obr{bottom:40px;right:40px;transform:scaleX(-1)}
+.hero:hover .orn{opacity:.42}
+.sci{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3}
+.scl{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);margin:0 auto;animation:sp 2s ease-in-out infinite}
+@keyframes sp{0%,100%{opacity:.3;transform:scaleY(.8)}50%{opacity:.8;transform:scaleY(1)}}
+.si{max-width:900px;margin:0 auto;padding:0 2rem}
+.sh{text-align:center;margin-bottom:3.5rem}
+.stag{font-family:var(--fd);font-size:.65rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;opacity:.8}
+.sti{font-family:var(--fd);font-weight:600;font-size:clamp(1.8rem,5vw,3rem);color:var(--iv);letter-spacing:.08em;margin-bottom:.5rem}
+.ssu{font-family:var(--fa);font-style:italic;color:var(--iv-d);font-size:1.05rem}
+.sex{position:relative;z-index:2;padding:8rem 0;background:var(--noir-s);border-top:1px solid var(--noir-b);border-bottom:1px solid var(--noir-b)}
+.sex::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 40% at 50% 50%,rgba(201,168,76,.04),transparent 70%);pointer-events:none}
+.exc{display:grid;grid-template-columns:24px 1fr 24px;gap:2rem;align-items:start;background:var(--noir-c);border:1px solid var(--noir-b);border-left:2px solid var(--orange-d);border-right:2px solid var(--orange-d);padding:3rem 2rem;position:relative}
+.exc::before,.exc::after{content:'';position:absolute;left:0;right:0;height:2px;background:linear-gradient(to right,var(--orange-d),var(--gold-d),var(--orange-d))}
+.exc::before{top:0}.exc::after{bottom:0}
+.exo{color:var(--orange-d);opacity:.5;padding-top:.5rem}.exo.r{transform:scaleX(-1)}
+.exb{display:flex;flex-direction:column;gap:1.2rem}
+.exb p{font-family:var(--fb);font-size:1.1rem;color:var(--iv);line-height:1.95;font-weight:300}
+.exb .dc::first-letter{font-family:var(--fd);float:left;font-size:4.5rem;line-height:.75;margin-right:.12em;color:var(--orange);padding-top:.05em}
+.exb .it{font-style:italic;color:var(--iv-d)!important;padding-left:1.5rem;border-left:1px solid var(--gold-d)}
+.exb .fin{color:var(--orange-g)!important;font-style:italic}
+.exs{text-align:center;color:var(--gold-d);font-size:.85rem;letter-spacing:.4em;opacity:.7;padding:.5rem 0}
+.exn{text-align:center;margin-top:2.5rem}
+.exn p{font-family:var(--fa);font-style:italic;color:var(--iv-d);font-size:.9rem;opacity:.6}
+.exh{font-family:monospace!important;font-style:normal!important;font-size:.68rem!important;opacity:.28!important;margin-top:.4rem;color:var(--gold-d)!important}
+.sau{position:relative;z-index:2;padding:8rem 0;background:var(--noir)}
+.aug{display:grid;grid-template-columns:220px 1fr;gap:4rem;align-items:start}
+.auf{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.auph{position:relative;width:160px}
+.ausv{width:160px;height:200px;color:var(--gold-d);opacity:.5;transition:opacity .3s}
+.auph:hover .ausv{opacity:.8}
+.aub{font-family:var(--fd);font-size:.6rem;letter-spacing:.3em;color:var(--gold);border:1px solid var(--gold-d);padding:.3rem 1rem;opacity:.7}
+.auti{font-family:var(--fd);font-size:2rem;color:var(--iv);letter-spacing:.1em;margin-bottom:1.5rem}
+.aubio{font-family:var(--fb);font-size:1.05rem;color:var(--iv-d);margin-bottom:1.1rem;font-weight:300}
+.audv{display:flex;align-items:center;gap:1rem;margin:1.5rem 0}
+.audv span:not(.ads){flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-d))}
+.audv span:last-child{background:linear-gradient(to left,transparent,var(--gold-d))}
+.ads{color:var(--gold-d);font-size:.8rem}
+.auq{font-family:var(--fa);font-style:italic;font-size:1rem;color:var(--orange);opacity:.8;line-height:1.6;padding-left:1.2rem;border-left:2px solid var(--orange-d)}
+.auls{display:flex;gap:1rem;margin-top:1.5rem}
+.aulk{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fd);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-d);text-decoration:none;border:1px solid var(--gold-d);padding:.4rem 1rem;transition:color .25s,border-color .25s}
+.aulk:hover{color:var(--gold-l);border-color:var(--gold)}
+.sco{position:relative;z-index:2;padding:8rem 0;background:var(--noir-s);border-top:1px solid var(--noir-b)}
+.coc{background:var(--noir-c);border:1px solid var(--noir-b);padding:3rem;max-width:600px;margin:0 auto;position:relative}
+.coc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--orange-d),transparent)}
+.cosig{width:60px;height:60px;color:var(--gold-d);margin:0 auto 2rem;opacity:.4}
+.cof{display:flex;flex-direction:column;gap:1.5rem}
+.fg{display:flex;flex-direction:column;gap:.4rem}
+.fg label{font-family:var(--fd);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-d)}
+.fg input,.fg textarea{background:transparent;border:none;border-bottom:1px solid var(--noir-b);color:var(--iv);font-family:var(--fb);font-size:1rem;padding:.6rem 0;outline:none;transition:border-color .25s;resize:none;cursor:text}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--iv-d);opacity:.3}
+.fg input:focus,.fg textarea:focus{border-bottom-color:var(--gold-d)}
+.sb{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--fd);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--iv);background:transparent;border:1px solid var(--orange-d);padding:.8rem 2rem;cursor:pointer;align-self:flex-start;position:relative;overflow:hidden;transition:color .3s,border-color .3s}
+.sb::before{content:'';position:absolute;inset:0;background:var(--orange-d);transform:translateX(-100%);transition:transform .3s}
+.sb:hover{color:var(--gold-l);border-color:var(--orange)}.sb:hover::before{transform:none}
+.sb span,.sb svg{position:relative;z-index:1}
+.fn{font-family:var(--fb);font-size:.8rem;color:var(--iv-d);opacity:.35;font-style:italic}
+footer{position:relative;z-index:2;background:var(--noir);border-top:1px solid var(--noir-b);padding:3rem 0}
+.fti{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem}
+.fsig{width:40px;height:40px;color:var(--gold-d);opacity:.3;margin-bottom:.5rem}
+.ftt{font-family:var(--fd);font-size:.8rem;letter-spacing:.4em;color:var(--gold-d)}
+.fcp{font-size:.8rem;color:var(--iv-d);opacity:.4}
+.flk{display:flex;gap:1.5rem}
+.flk a{font-family:var(--fd);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-d);text-decoration:none;transition:color .25s}
+.flk a:hover{color:var(--gold)}
+.sr{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.sr.v{opacity:1;transform:none}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nl{gap:1.2rem}.aug{grid-template-columns:1fr;gap:2.5rem}.auf{align-items:center}.orn{display:none}.sex,.sau,.sco{padding:5rem 0}.exc{grid-template-columns:1fr;gap:0}.exo{display:none}.coc{padding:2rem 1.5rem}}
+@media(max-width:480px){.nl{gap:.8rem}.nl a{font-size:.58rem}}
+</style>
 </head>
 <body>
 
-  <!-- CURSEUR PERSONNALISÉ -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-trail" id="cursor-trail"></div>
+<div id="cur"></div>
+<div id="curt"></div>
+<canvas id="noise"></canvas>
 
-  <!-- BRUIT DE FOND -->
-  <canvas id="noise-canvas"></canvas>
+<nav id="nav">
+  <div class="ns">✦</div>
+  <ul class="nl">
+    <li><a href="#hero">Accueil</a></li>
+    <li><a href="#extrait">Extrait</a></li>
+    <li><a href="#auteur">L'auteur</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="ns">✦</div>
+</nav>
 
-  <!-- NAVIGATION -->
-  <nav class="nav" id="nav">
-    <div class="nav-sigil">✦</div>
-    <ul class="nav-links">
-      <li><a href="#hero" data-section="accueil">Accueil</a></li>
-      <li><a href="#extrait" data-section="extrait">Extrait</a></li>
-      <li><a href="#auteur" data-section="auteur">L'auteur</a></li>
-      <li><a href="#contact" data-section="contact">Contact</a></li>
-    </ul>
-    <div class="nav-sigil">✦</div>
-  </nav>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="orn otl"><svg viewBox="0 0 120 120" fill="none"><path d="M60 10L60 110M10 60L110 60" stroke="currentColor" stroke-width=".5" opacity=".4"/><path d="M60 10L110 60L60 110L10 60Z" stroke="currentColor" stroke-width=".7" fill="none"/><circle cx="60" cy="60" r="20" stroke="currentColor" stroke-width=".5" fill="none"/><circle cx="60" cy="60" r="35" stroke="currentColor" stroke-width=".3" fill="none"/><path d="M60 25L72 55L60 95L48 55Z" stroke="currentColor" stroke-width=".5" fill="none" opacity=".6"/></svg></div>
+  <div class="orn otr"><svg viewBox="0 0 120 120" fill="none"><path d="M60 10L60 110M10 60L110 60" stroke="currentColor" stroke-width=".5" opacity=".4"/><path d="M60 10L110 60L60 110L10 60Z" stroke="currentColor" stroke-width=".7" fill="none"/><circle cx="60" cy="60" r="20" stroke="currentColor" stroke-width=".5" fill="none"/><circle cx="60" cy="60" r="35" stroke="currentColor" stroke-width=".3" fill="none"/></svg></div>
+  <div class="orn obl"><svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="50" stroke="currentColor" stroke-width=".4" fill="none" stroke-dasharray="2 4"/><path d="M60 10L110 60L60 110L10 60Z" stroke="currentColor" stroke-width=".6" fill="none"/><path d="M35 35L85 35L85 85L35 85Z" stroke="currentColor" stroke-width=".4" fill="none" transform="rotate(45 60 60)"/></svg></div>
+  <div class="orn obr"><svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="50" stroke="currentColor" stroke-width=".4" fill="none" stroke-dasharray="2 4"/><path d="M60 10L110 60L60 110L10 60Z" stroke="currentColor" stroke-width=".6" fill="none"/><path d="M35 35L85 35L85 85L35 85Z" stroke="currentColor" stroke-width=".4" fill="none" transform="rotate(45 60 60)"/></svg></div>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- SECTION HERO                                -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section class="hero" id="hero">
+  <div class="hc">
+    <div class="hey">— un roman —</div>
+    <h1 class="ht" aria-label="INCLAVATUS">
+      <span class="tl" style="animation-delay:.10s">I</span><span class="tl" style="animation-delay:.18s">N</span><span class="tl" style="animation-delay:.26s">C</span><span class="tl" style="animation-delay:.34s">L</span><span class="tl" style="animation-delay:.42s">A</span><span class="tl" style="animation-delay:.50s">V</span><span class="tl" style="animation-delay:.58s">A</span><span class="tl" style="animation-delay:.66s">T</span><span class="tl" style="animation-delay:.74s">U</span><span class="tl" style="animation-delay:.82s">S</span>
+    </h1>
+    <div class="hdv"><span class="dl"></span><span class="ds">⬡</span><span class="dl"></span></div>
+    <p class="htag">New York. Un journal maudit.<br/>Une flamme qui respire.</p>
 
-    <div class="hero-ornament top-left">
-      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M60 10 L60 110 M10 60 L110 60" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-        <path d="M60 10 L110 60 L60 110 L10 60 Z" stroke="currentColor" stroke-width="0.7" fill="none"/>
-        <circle cx="60" cy="60" r="20" stroke="currentColor" stroke-width="0.5" fill="none"/>
-        <circle cx="60" cy="60" r="35" stroke="currentColor" stroke-width="0.3" fill="none"/>
-        <path d="M60 25 L72 55 L60 95 L48 55 Z" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.6"/>
+    <!-- COUVERTURE — remplacez ce bloc par <img src="couverture.jpg" ...> quand vous avez votre image -->
+    <div class="cw" id="cover-slot">
+      <svg class="csvg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="4" width="192" height="292" rx="4" stroke="currentColor" stroke-width=".8" fill="none"/>
+        <rect x="10" y="10" width="180" height="280" rx="3" stroke="currentColor" stroke-width=".4" fill="none"/>
+        <path d="M4 4L30 4M4 4L4 30" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M196 4L170 4M196 4L196 30" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M4 296L30 296M4 296L4 270" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M196 296L170 296M196 296L196 270" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="100" cy="145" r="42" stroke="currentColor" stroke-width=".5" fill="none"/>
+        <path d="M100 103L130 140L118 183L82 183L70 140Z" stroke="currentColor" stroke-width=".5" fill="none"/>
+        <path d="M100 110L100 180M80 130L120 160M120 130L80 160" stroke="currentColor" stroke-width=".3" opacity=".45"/>
+        <text x="100" y="242" text-anchor="middle" font-family="Cinzel,serif" font-size="11" fill="currentColor" opacity=".6" letter-spacing="4">INCLAVATUS</text>
+        <text x="100" y="260" text-anchor="middle" font-family="Cinzel,serif" font-size="6" fill="currentColor" opacity=".35" letter-spacing="3">CHAPITRE I</text>
       </svg>
+      <p class="ch">← insérez votre couverture ici →</p>
     </div>
 
-    <div class="hero-ornament top-right">
-      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M60 10 L60 110 M10 60 L110 60" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-        <path d="M60 10 L110 60 L60 110 L10 60 Z" stroke="currentColor" stroke-width="0.7" fill="none"/>
-        <circle cx="60" cy="60" r="20" stroke="currentColor" stroke-width="0.5" fill="none"/>
-        <circle cx="60" cy="60" r="35" stroke="currentColor" stroke-width="0.3" fill="none"/>
-        <path d="M60 25 L72 55 L60 95 L48 55 Z" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.6"/>
-      </svg>
+    <a href="#extrait" class="hcta">
+      <span>Lire l'extrait</span>
+      <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 2L8 14M3 9L8 14L13 9" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+  <div class="sci"><div class="scl"></div></div>
+</section>
+
+<!-- EXTRAIT -->
+<section class="sex" id="extrait">
+  <div class="si">
+    <div class="sh sr">
+      <p class="stag">✦ Extrait ✦</p>
+      <h2 class="sti">Chapitre I</h2>
+      <p class="ssu">Quand la chance sent le brûlé</p>
     </div>
-
-    <div class="hero-content">
-      <div class="hero-eyebrow reveal-up">— un roman —</div>
-
-      <h1 class="hero-title reveal-up" style="animation-delay:.15s">
-        <span class="title-letter" style="animation-delay:.1s">I</span>
-        <span class="title-letter" style="animation-delay:.18s">N</span>
-        <span class="title-letter" style="animation-delay:.26s">C</span>
-        <span class="title-letter" style="animation-delay:.34s">L</span>
-        <span class="title-letter" style="animation-delay:.42s">A</span>
-        <span class="title-letter" style="animation-delay:.50s">V</span>
-        <span class="title-letter" style="animation-delay:.58s">A</span>
-        <span class="title-letter" style="animation-delay:.66s">T</span>
-        <span class="title-letter" style="animation-delay:.74s">U</span>
-        <span class="title-letter" style="animation-delay:.82s">S</span>
-      </h1>
-
-      <div class="hero-divider reveal-up" style="animation-delay:.5s">
-        <span class="divider-line"></span>
-        <span class="divider-sigil">⬡</span>
-        <span class="divider-line"></span>
+    <div class="exc sr">
+      <div class="exo">
+        <svg viewBox="0 0 20 200"><line x1="10" y1="0" x2="10" y2="200" stroke="currentColor" stroke-width=".5"/><circle cx="10" cy="30" r="3" stroke="currentColor" stroke-width=".8" fill="none"/><circle cx="10" cy="100" r="5" stroke="currentColor" stroke-width=".8" fill="none"/><circle cx="10" cy="170" r="3" stroke="currentColor" stroke-width=".8" fill="none"/></svg>
       </div>
-
-      <p class="hero-tagline reveal-up" style="animation-delay:.65s">
-        New York. Un journal maudit.<br/>Une flamme qui respire.
-      </p>
-
-      <!-- EMPLACEMENT COUVERTURE -->
-      <div class="cover-placeholder reveal-up" style="animation-delay:.8s" id="cover-slot">
-        <div class="cover-inner">
-          <div class="cover-frame">
-            <svg class="cover-tarot-border" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-              <!-- Cadre extérieur -->
-              <rect x="4" y="4" width="192" height="292" rx="4" stroke="currentColor" stroke-width="0.8" fill="none"/>
-              <rect x="10" y="10" width="180" height="280" rx="3" stroke="currentColor" stroke-width="0.4" fill="none"/>
-              <!-- Coins ornementaux -->
-              <path d="M4 4 L30 4 M4 4 L4 30" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M196 4 L170 4 M196 4 L196 30" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M4 296 L30 296 M4 296 L4 270" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M196 296 L170 296 M196 296 L196 270" stroke="currentColor" stroke-width="1.5"/>
-              <!-- Motif central -->
-              <circle cx="100" cy="150" r="40" stroke="currentColor" stroke-width="0.5" fill="none"/>
-              <path d="M100 110 L126 142 L116 178 L84 178 L74 142 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
-              <path d="M100 118 L100 182 M82 134 L118 166 M118 134 L82 166" stroke="currentColor" stroke-width="0.3" opacity="0.5"/>
-              <text x="100" y="240" text-anchor="middle" font-family="Cinzel" font-size="11" fill="currentColor" opacity="0.6" letter-spacing="4">INCLAVATUS</text>
-              <text x="100" y="258" text-anchor="middle" font-family="Cinzel" font-size="6" fill="currentColor" opacity="0.4" letter-spacing="3">CHAPITRE I</text>
-            </svg>
-            <p class="cover-hint">← Remplacez par votre couverture →</p>
-          </div>
-        </div>
+      <div class="exb" id="extrait-body">
+        <p class="dc">Le New York Rush News n'était pas un journal respectable.</p>
+        <p>Mais il avait une réputation. Une mauvaise, collante, qui lui valait plus de regards de travers que de lecteurs fidèles. Comme si le journal ne rapportait pas les catastrophes — il les devançait. Certains plaisantaient en disant que le Rush News ne couvrait pas les désastres mais qu'il les <em>appelait.</em></p>
+        <p>Et, derrière cette prouesse grotesque, il y avait Donald Davis, un homme massif dont la voix occupait toujours trop d'espace et dont la peau virait au rouge plus vite qu'une sirène de police.</p>
+        <p class="it">Il était payé une misère. Son appartement ne dépassait pas dix mètres carrés : un matelas, un lavabo, une fenêtre donnant sur un mur en brique. Une cellule, à peine habitable, où il survivait plus qu'il ne vivait, mais il s'en contentait.</p>
+        <p>Il n'avait pas appris à exiger davantage.</p>
+        <div class="exs">— ✦ —</div>
+        <p>Quelques jours plus tôt, il avait reçu une lettre, arrivée comme un coup de vent dans une enveloppe blanche un peu écornée. <em>Nous sommes au regret de vous informer…</em> Des mots secs, polis en apparence, mais capables de transformer l'avenir en un grand vide.</p>
+        <p>Columbia ne voulait pas de lui. New York brillait toujours, monstre magnifique aux mille lumières. Mais jamais pour lui.</p>
+        <div class="exs">— ✦ —</div>
+        <p>Alors qu'il le déverrouillait, il jura voir une lueur orange danser un instant entre ses doigts. Pas un reflet, pas une illusion. Une sorte de flamme qui pulsa, puis s'éteignit.</p>
+        <p class="fin">Et, pendant une fraction de seconde, il eut la terrifiante certitude qu'elle <em>respirait.</em></p>
       </div>
-
-      <a href="#extrait" class="hero-cta reveal-up" style="animation-delay:.95s">
-        <span>Lire l'extrait</span>
-        <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 2 L8 14 M3 9 L8 14 L13 9" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
-      </a>
-    </div>
-
-    <div class="hero-ornament bottom-left">
-      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="60" r="50" stroke="currentColor" stroke-width="0.4" fill="none" stroke-dasharray="2 4"/>
-        <path d="M60 10 L110 60 L60 110 L10 60 Z" stroke="currentColor" stroke-width="0.6" fill="none"/>
-        <path d="M35 35 L85 35 L85 85 L35 85 Z" stroke="currentColor" stroke-width="0.4" fill="none" transform="rotate(45 60 60)"/>
-      </svg>
-    </div>
-
-    <div class="hero-ornament bottom-right">
-      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="60" r="50" stroke="currentColor" stroke-width="0.4" fill="none" stroke-dasharray="2 4"/>
-        <path d="M60 10 L110 60 L60 110 L10 60 Z" stroke="currentColor" stroke-width="0.6" fill="none"/>
-        <path d="M35 35 L85 35 L85 85 L35 85 Z" stroke="currentColor" stroke-width="0.4" fill="none" transform="rotate(45 60 60)"/>
-      </svg>
-    </div>
-
-    <div class="scroll-indicator">
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- SECTION EXTRAIT                             -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section class="section-extrait" id="extrait">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">✦ Extrait ✦</div>
-        <h2 class="section-title">Chapitre I</h2>
-        <p class="section-subtitle">Quand la chance sent le brûlé</p>
+      <div class="exo r">
+        <svg viewBox="0 0 20 200"><line x1="10" y1="0" x2="10" y2="200" stroke="currentColor" stroke-width=".5"/><circle cx="10" cy="30" r="3" stroke="currentColor" stroke-width=".8" fill="none"/><circle cx="10" cy="100" r="5" stroke="currentColor" stroke-width=".8" fill="none"/><circle cx="10" cy="170" r="3" stroke="currentColor" stroke-width=".8" fill="none"/></svg>
       </div>
+    </div>
+    <div class="exn sr">
+      <p>— Extrait du Chapitre I —</p>
+      <p class="exh">Modifiable dans index.html › #extrait-body</p>
+    </div>
+  </div>
+</section>
 
-      <div class="extrait-card">
-        <div class="extrait-ornament-left">
-          <svg viewBox="0 0 20 200" xmlns="http://www.w3.org/2000/svg">
-            <line x1="10" y1="0" x2="10" y2="200" stroke="currentColor" stroke-width="0.5"/>
-            <circle cx="10" cy="30" r="3" stroke="currentColor" stroke-width="0.8" fill="none"/>
-            <circle cx="10" cy="100" r="5" stroke="currentColor" stroke-width="0.8" fill="none"/>
-            <circle cx="10" cy="170" r="3" stroke="currentColor" stroke-width="0.8" fill="none"/>
+<!-- AUTEUR -->
+<section class="sau" id="auteur">
+  <div class="si">
+    <div class="aug sr">
+      <div class="auf">
+        <div class="auph">
+          <!-- Remplacez ce SVG par votre photo : <img src="auteur.jpg" style="width:160px;height:200px;object-fit:cover;border:1px solid #6b5520;" alt="Inclavatus"/> -->
+          <svg class="ausv" viewBox="0 0 160 200">
+            <rect x="2" y="2" width="156" height="196" rx="3" stroke="currentColor" stroke-width=".6" fill="none"/>
+            <path d="M2 2L20 2M2 2L2 20" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M158 2L140 2M158 2L158 20" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M2 198L20 198M2 198L2 180" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M158 198L140 198M158 198L158 180" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="80" cy="85" r="30" stroke="currentColor" stroke-width=".5" fill="none"/>
+            <circle cx="80" cy="85" r="18" stroke="currentColor" stroke-width=".5" fill="none"/>
+            <path d="M80 55L80 115M50 85L110 85" stroke="currentColor" stroke-width=".3" opacity=".4"/>
+            <text x="80" y="155" text-anchor="middle" font-family="Cinzel,serif" font-size="8" fill="currentColor" opacity=".45" letter-spacing="2">AUTEUR</text>
           </svg>
         </div>
-
-        <div class="extrait-body" id="extrait-body">
-          <p class="extrait-drop-cap">Le New York Rush News n'était pas un journal respectable.</p>
-          <p>Mais il avait une réputation. Une mauvaise, collante, qui lui valait plus de regards de travers que de lecteurs fidèles. Comme si le journal ne rapportait pas les catastrophes — il les devançait. Certains plaisantaient en disant que le Rush News ne couvrait pas les désastres mais qu'il les appelait.</p>
-          <p>Et, derrière cette prouesse grotesque, il y avait Donald Davis, un homme massif dont la voix occupait toujours trop d'espace et dont la peau virait au rouge plus vite qu'une sirène de police.</p>
-          <p class="extrait-italique">Il était payé une misère. Son appartement ne dépassait pas dix mètres carrés : un matelas, un lavabo, une fenêtre donnant sur un mur en brique. Une cellule, à peine habitable, où il survivait plus qu'il ne vivait, mais il s'en contentait.</p>
-          <p>Il n'avait pas appris à exiger davantage.</p>
-          <div class="extrait-separator">— ✦ —</div>
-          <p>Ce matin-là ne faisait pas exception. Le métro était bondé, saturé de chaleur humaine et d'odeurs trop familières. Quelques jours plus tôt, il avait reçu une lettre, arrivée comme un coup de vent dans une enveloppe blanche un peu écornée. <em>Nous sommes au regret de vous informer…</em> Des mots secs, polis en apparence, mais capables de transformer l'avenir en un grand vide.</p>
-          <p>Columbia ne voulait pas de lui.</p>
-          <p>New York brillait toujours, monstre magnifique aux mille lumières. Mais jamais pour lui.</p>
-          <div class="extrait-separator">— ✦ —</div>
-          <p>Alors qu'il le déverrouillait, il jura voir une lueur orange danser un instant entre ses doigts. Pas un reflet, pas une illusion. Une sorte de flamme qui pulsa, puis s'éteignit.</p>
-          <p class="extrait-final">Et, pendant une fraction de seconde, il eut la terrifiante certitude qu'elle <em>respirait.</em></p>
-        </div>
-
-        <div class="extrait-ornament-right">
-          <svg viewBox="0 0 20 200" xmlns="http://www.w3.org/2000/svg">
-            <line x1="10" y1="0" x2="10" y2="200" stroke="currentColor" stroke-width="0.5"/>
-            <circle cx="10" cy="30" r="3" stroke="currentColor" stroke-width="0.8" fill="none"/>
-            <circle cx="10" cy="100" r="5" stroke="currentColor" stroke-width="0.8" fill="none"/>
-            <circle cx="10" cy="170" r="3" stroke="currentColor" stroke-width="0.8" fill="none"/>
-          </svg>
-        </div>
+        <div class="aub">INCLAVATUS</div>
       </div>
-
-      <div class="extrait-note">
-        <p>— Extrait du Chapitre I —</p>
-        <p class="note-hint">Cet extrait peut être modifié dans <code>index.html</code> → section <code>#extrait-body</code></p>
+      <div>
+        <p class="stag">✦ L'auteur ✦</p>
+        <h2 class="auti">Inclavatus</h2>
+        <p class="aubio">Inclavatus est un auteur qui écrit dans l'ombre et publie à la lumière. À travers <em>Inclavatus</em>, son premier roman, il plonge le lecteur dans les ruelles de New York, là où la presse de caniveau côtoie les forces qui ne devraient pas exister.</p>
+        <p class="aubio">Son écriture oscille entre le réalisme urbain et le fantastique discret — ce moment précis où la réalité se fissure, imperceptiblement, et laisse passer quelque chose.</p>
+        <div class="audv"><span></span><span class="ads">◈</span><span></span></div>
+        <p class="auq">"New York brillait toujours, monstre magnifique aux mille lumières. Mais jamais pour lui."</p>
+        <div class="auls">
+          <a href="https://inclavatus.tumblr.com/" target="_blank" rel="noopener" class="aulk">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M14 3h7m0 0v7m0-7L10 14M5 5H3v16h16v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Tumblr
+          </a>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- SECTION AUTEUR                              -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section class="section-auteur" id="auteur">
-    <div class="section-inner">
-      <div class="auteur-grid">
-
-        <div class="auteur-visual">
-          <div class="auteur-frame">
-            <div class="auteur-photo-slot">
-              <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" class="auteur-placeholder-svg">
-                <rect x="2" y="2" width="156" height="196" rx="3" stroke="currentColor" stroke-width="0.6" fill="none"/>
-                <path d="M2 2 L20 2 M2 2 L2 20" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M158 2 L140 2 M158 2 L158 20" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M2 198 L20 198 M2 198 L2 180" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M158 198 L140 198 M158 198 L158 180" stroke="currentColor" stroke-width="1.5"/>
-                <circle cx="80" cy="85" r="30" stroke="currentColor" stroke-width="0.5" fill="none"/>
-                <circle cx="80" cy="85" r="18" stroke="currentColor" stroke-width="0.5" fill="none"/>
-                <path d="M80 55 L80 115 M50 85 L110 85" stroke="currentColor" stroke-width="0.3" opacity="0.4"/>
-                <text x="80" y="155" text-anchor="middle" font-family="Cinzel" font-size="8" fill="currentColor" opacity="0.5" letter-spacing="2">AUTEUR</text>
-              </svg>
-            </div>
-            <div class="auteur-name-badge">INCLAVATUS</div>
-          </div>
-        </div>
-
-        <div class="auteur-text">
-          <div class="section-tag">✦ L'auteur ✦</div>
-          <h2 class="auteur-title">Inclavatus</h2>
-
-          <p class="auteur-bio">Inclavatus est un auteur qui écrit dans l'ombre et publie à la lumière. À travers <em>Inclavatus</em>, son premier roman, il plonge le lecteur dans les ruelles de New York, là où la presse de caniveau côtoie les forces qui ne devraient pas exister.</p>
-
-          <p class="auteur-bio">Son écriture oscille entre le réalisme urbain et le fantastique discret — ce moment précis où la réalité se fissure, imperceptiblement, et laisse passer quelque chose.</p>
-
-          <div class="auteur-divider">
-            <span></span><span class="adiv-sigil">◈</span><span></span>
-          </div>
-
-          <p class="auteur-quote">"New York brillait toujours, monstre magnifique aux mille lumières. Mais jamais pour lui."</p>
-
-          <div class="auteur-links">
-            <a href="https://inclavatus.tumblr.com/" target="_blank" rel="noopener" class="auteur-link">
-              <svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 2h4v2H8v6h2l-4 4-4-4h2V2z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
-              Tumblr
-            </a>
-          </div>
-        </div>
-
-      </div>
+<!-- CONTACT -->
+<section class="sco" id="contact">
+  <div class="si">
+    <div class="sh sr">
+      <p class="stag">✦ Contact ✦</p>
+      <h2 class="sti">Invoquer l'auteur</h2>
+      <p class="ssu">Pour toute question, collaboration, ou simple curiosité.</p>
     </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- SECTION CONTACT                             -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section class="section-contact" id="contact">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">✦ Contact ✦</div>
-        <h2 class="section-title">Invoquer l'auteur</h2>
-        <p class="section-subtitle">Pour toute question, collaboration, ou simple curiosité.</p>
+    <div class="coc sr">
+      <div class="cosig">
+        <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width=".6" fill="none"/><path d="M40 4L40 76M4 40L76 40" stroke="currentColor" stroke-width=".4" opacity=".3"/><path d="M40 4L76 40L40 76L4 40Z" stroke="currentColor" stroke-width=".8" fill="none"/><circle cx="40" cy="40" r="12" stroke="currentColor" stroke-width=".6" fill="none"/><circle cx="40" cy="40" r="4" fill="currentColor" opacity=".5"/></svg>
       </div>
-
-      <div class="contact-card">
-        <div class="contact-sigil">
-          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="0.6" fill="none"/>
-            <path d="M40 4 L40 76 M4 40 L76 40" stroke="currentColor" stroke-width="0.4" opacity="0.3"/>
-            <path d="M40 4 L76 40 L40 76 L4 40 Z" stroke="currentColor" stroke-width="0.8" fill="none"/>
-            <circle cx="40" cy="40" r="12" stroke="currentColor" stroke-width="0.6" fill="none"/>
-            <circle cx="40" cy="40" r="4" fill="currentColor" opacity="0.5"/>
-          </svg>
+      <form class="cof" id="cof">
+        <div class="fg">
+          <label for="nm">Votre nom</label>
+          <input type="text" id="nm" name="name" placeholder="Charlie Saunders..." autocomplete="off"/>
         </div>
-
-        <form class="contact-form" id="contact-form">
-          <div class="form-group">
-            <label for="name">Votre nom</label>
-            <input type="text" id="name" name="name" placeholder="Charlie Saunders..." autocomplete="off" />
-          </div>
-          <div class="form-group">
-            <label for="email">Votre email</label>
-            <input type="email" id="email" name="email" placeholder="vous@example.com" autocomplete="off" />
-          </div>
-          <div class="form-group">
-            <label for="message">Votre message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Écrivez ici..."></textarea>
-          </div>
-          <button type="submit" class="submit-btn">
-            <span>Envoyer</span>
-            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L14 8 M9 3 L14 8 L9 13" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
-          </button>
-          <p class="form-note">Ce formulaire est un modèle — connectez-le à Formspree, EmailJS ou votre backend.</p>
-        </form>
-      </div>
-
+        <div class="fg">
+          <label for="em">Votre email</label>
+          <input type="email" id="em" name="email" placeholder="vous@example.com" autocomplete="off"/>
+        </div>
+        <div class="fg">
+          <label for="ms">Votre message</label>
+          <textarea id="ms" name="message" rows="5" placeholder="Écrivez ici..."></textarea>
+        </div>
+        <button type="submit" class="sb">
+          <span>Envoyer</span>
+          <svg width="14" height="14" viewBox="0 0 16 16"><path d="M2 8L14 8M9 3L14 8L9 13" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <p class="fn">Connectez ce formulaire à Formspree ou EmailJS pour recevoir les messages.</p>
+      </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- FOOTER                                      -->
-  <!-- ═══════════════════════════════════════════ -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-sigil">
-        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-          <path d="M30 5 L55 30 L30 55 L5 30 Z" stroke="currentColor" stroke-width="0.8" fill="none"/>
-          <circle cx="30" cy="30" r="12" stroke="currentColor" stroke-width="0.5" fill="none"/>
-          <circle cx="30" cy="30" r="3" fill="currentColor" opacity="0.4"/>
-        </svg>
-      </div>
-      <p class="footer-title">INCLAVATUS</p>
-      <p class="footer-copy">© 2025 Inclavatus — Tous droits réservés</p>
-      <div class="footer-links">
-        <a href="https://inclavatus.tumblr.com/" target="_blank" rel="noopener">Tumblr</a>
-      </div>
-    </div>
-  </footer>
+<!-- FOOTER -->
+<footer>
+  <div class="fti">
+    <div class="fsig"><svg viewBox="0 0 60 60"><path d="M30 5L55 30L30 55L5 30Z" stroke="currentColor" stroke-width=".8" fill="none"/><circle cx="30" cy="30" r="12" stroke="currentColor" stroke-width=".5" fill="none"/><circle cx="30" cy="30" r="3" fill="currentColor" opacity=".4"/></svg></div>
+    <p class="ftt">INCLAVATUS</p>
+    <p class="fcp">© 2025 Inclavatus — Tous droits réservés</p>
+    <div class="flk"><a href="https://inclavatus.tumblr.com/" target="_blank" rel="noopener">Tumblr</a></div>
+  </div>
+</footer>
 
-  <script src="main.js"></script>
+<script>
+const cur=document.getElementById('cur'),curt=document.getElementById('curt');
+let mx=0,my=0,tx=0,ty=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function loop(){tx+=(mx-tx)*.12;ty+=(my-ty)*.12;curt.style.left=tx+'px';curt.style.top=ty+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,input,textarea').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2)';cur.style.background='var(--gold)';curt.style.opacity='.7'});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';cur.style.background='var(--orange)';curt.style.opacity='.4'});
+});
+if('ontouchstart' in window){cur.style.display='none';curt.style.display='none';document.body.style.cursor='default'}
+
+const cv=document.getElementById('noise'),cx=cv.getContext('2d');
+function gn(){cv.width=window.innerWidth;cv.height=window.innerHeight;const d=cx.createImageData(cv.width,cv.height),b=new Uint32Array(d.data.buffer);for(let i=0;i<b.length;i++){const v=(Math.random()*255)|0;b[i]=(255<<24)|(v<<16)|(v<<8)|v}cx.putImageData(d,0,0)}
+gn();setInterval(gn,100);window.addEventListener('resize',gn);
+
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>60),{passive:true});
+
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ro.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.sr').forEach(el=>ro.observe(el));
+
+document.querySelectorAll('.tl').forEach((l,i)=>{
+  l.addEventListener('mouseenter',()=>{l.style.color=i%2?'var(--gold-l)':'var(--orange-g)';l.style.webkitTextStroke=`1px ${i%2?'var(--gold)':'var(--orange)'}`;l.style.textShadow=`0 0 20px ${i%2?'rgba(201,168,76,.5)':'rgba(232,97,10,.5)'}`});
+  l.addEventListener('mouseleave',()=>{l.style.color='transparent';l.style.webkitTextStroke='1px var(--gold)';l.style.textShadow='none'});
+});
+
+const form=document.getElementById('cof');
+if(form)form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const btn=form.querySelector('.sb'),orig=btn.innerHTML;
+  btn.innerHTML='<span>Message envoyé ✦</span>';
+  btn.style.borderColor='var(--gold)';btn.style.color='var(--gold-l)';
+  setTimeout(()=>{btn.innerHTML=orig;btn.style.borderColor='';btn.style.color='';form.reset()},3000);
+});
+</script>
 </body>
 </html>
